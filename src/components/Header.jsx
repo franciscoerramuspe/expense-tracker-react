@@ -1,5 +1,6 @@
 import React from 'react'
 import NewBudget from './NewBudget'
+import BudgetControl from './BudgetControl'
 
 const Header = ({ presupuesto, 
                 setPresupuesto, 
@@ -10,7 +11,9 @@ const Header = ({ presupuesto,
         <h1>Expense Tracker</h1>
 
         {isValidBudget ? (
-            <p>Contorl your budgets</p>
+            <BudgetControl
+                presupuesto={presupuesto}
+            />
         ) : (
             <NewBudget
                 presupuesto = {presupuesto}
