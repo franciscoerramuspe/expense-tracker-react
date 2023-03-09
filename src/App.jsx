@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import ExpenseListing from './components/ExpenseListing';
 import { generateId } from './helpers';
 import IconNewExpense from './img/nuevo-gasto.svg'
 import Modal from './components/Modal';
@@ -45,13 +46,21 @@ function App() {
       />
 
       {isValidBudget && (
-        <div className='nuevo-gasto'>
-          <img 
-            src={IconNewExpense}
-            alt='Icon new expense'
-            onClick={handleNewBudget}
-            />
-      </div>
+        <>
+        <main>
+          <ExpenseListing 
+            gastos={gastos}
+          />
+        </main>
+          <div className='nuevo-gasto'>
+            <img 
+              src={IconNewExpense}
+              alt='Icon new expense'
+              onClick={handleNewBudget}
+              />
+          </div>
+        </>
+        
       )}
       
       {modal && 

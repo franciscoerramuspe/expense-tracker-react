@@ -15,7 +15,6 @@ const Modal = ({setModal, animarModal, setAnimarModal, saveExpense}) => {
 
     const hideModal = () => {
         setAnimarModal(false)
-
         setTimeout(() => {
             setModal(false)
         }, 500);
