@@ -5,10 +5,11 @@ import CloseBtn from '../img/cerrar.svg'
 const Modal = ({setModal, animarModal, setAnimarModal, saveExpense}) => {
 
     const [message, setMessage] = useState('')
-
-    const [nombre, setNombre] = useState('')
-    const [cantidad, setCantidad] = useState('')
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState('')
     const [category, setCategory] = useState('')
+    const [date, setDate] = useState('')
+    const [id, setId] = useState('')
 
 
     const [expense, setExpense] = useState([])
@@ -23,7 +24,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, saveExpense}) => {
     const handleSubmit = e =>  {
         e.preventDefault();
 
-        if([nombre, categoria, categoria].includes('')) {
+        if([name, price, category].includes('')) {
             setMessage("All the inputs are required")
 
             setTimeout(() => {
@@ -31,7 +32,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, saveExpense}) => {
             }, 3000)
             return
         }
-        saveExpense({nombre, cantidad, categoria})
+        saveExpense({name, price, category, id, date})
     }
     return (
         <div className='modal'>
@@ -53,22 +54,22 @@ const Modal = ({setModal, animarModal, setAnimarModal, saveExpense}) => {
                     <label htmlFor="nombre">Expense Name</label>
 
                     <input 
+                        id="nombre"
                         type="text"
                         placeholder='Add the name of the expense'
-                        id="nombre"
-                        value={nombre}
-                        onChange= {e => setNombre(e.target.value)}
+                        value={name}
+                        onChange= {e => setName(e.target.value)}
                     />
                 </div>
                 <div className='campo'>
-                    <label htmlFor="cantidad">Quantity</label>
+                    <label htmlFor="cantidad">Price</label>
 
                     <input 
                         type="number"
                         placeholder='Add the amount of the expense'
                         id="cantidad"
-                        value={cantidad}
-                        onChange= {e => setCantidad(Number(e.target.value))}
+                        value={price}
+                        onChange= {e => setPrice(Number(e.target.value))}
                     />
                 </div>
 
@@ -81,13 +82,13 @@ const Modal = ({setModal, animarModal, setAnimarModal, saveExpense}) => {
                         onChange= {e => setCategory(e.target.value)}
                         >
                         <option value="">-- Select --</option>
-                        <option value="ahorro">Savings</option>
-                        <option value="comida">Food</option>
-                        <option value="casa">Housing</option>
-                        <option value="ocio">Leisure</option>
-                        <option value="salud">Health</option>
-                        <option value="suscripciones">Suscriptions</option>
-                        <option value="gastos">Others</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Food">Food</option>
+                        <option value="Housing">Housing</option>
+                        <option value="Leisure">Leisure</option>
+                        <option value="Health">Health</option>
+                        <option value="Suscriptions">Suscriptions</option>
+                        <option value="Others">Others</option>
 
 
 

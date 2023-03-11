@@ -13,7 +13,7 @@ function App() {
   const [modal, setModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
 
-  const [gastos, setGastos] = useState([])
+  const [expenses, setExpenses] = useState([])
 
   const handleNewBudget = () => {
     setModal(true)
@@ -24,10 +24,11 @@ function App() {
     }, 500);
   }
 
-  const saveExpense = gasto => {
-    gasto.id = generateId();
+  const saveExpense = expense => {
+    expense.id = generateId();
+    expense.date = Date.now();
     {/* adding the new expense to the history of expenses */}
-    setGastos([...gastos, gasto])
+    setExpenses([...expenses, expense])
 
     setAnimarModal(false)
         setTimeout(() => {
@@ -49,7 +50,7 @@ function App() {
         <>
         <main>
           <ExpenseListing 
-            gastos={gastos}
+            expenses={expenses}
           />
         </main>
           <div className='nuevo-gasto'>
