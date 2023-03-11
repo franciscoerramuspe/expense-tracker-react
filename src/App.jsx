@@ -18,7 +18,6 @@ function App() {
   const handleNewBudget = () => {
     setModal(true)
     
-    
     setTimeout(() => {
       setAnimarModal(true)
     }, 500);
@@ -37,8 +36,9 @@ function App() {
   }
 
   return (
-    <div className= {modal && 'fijar'}>
+    <div className= {modal ? 'fijar' : ''}>
       <Header
+        expenses = {expenses}
         presupuesto = {presupuesto}
         setPresupuesto = {setPresupuesto}
         isValidBudget = {isValidBudget}
