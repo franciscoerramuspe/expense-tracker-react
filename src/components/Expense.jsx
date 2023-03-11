@@ -28,12 +28,12 @@ const iconDictionary = {
   Others : ExpenseIcon
 }
 
-const Expense = ({expense}) => {
+const Expense = ({expense, setEditExpense}) => {
   const { category, name, price, id, date } = expense;
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.log("edit")}>
+      <SwipeAction onClick={() => setEditExpense(expense)}>
         Edit
       </SwipeAction>
     </LeadingActions>

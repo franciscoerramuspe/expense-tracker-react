@@ -2,7 +2,7 @@ import React from 'react'
 import Expense from './Expense'
 
 
-const ExpenseListing = ({expenses}) => {
+const ExpenseListing = ({expenses, setEditExpense}) => {
   return (
     <div className='listado-gastos contenedor'>
         
@@ -11,16 +11,9 @@ const ExpenseListing = ({expenses}) => {
           <Expense 
             key={expense.id}
             expense={expense}
+            setEditExpense={setEditExpense}
             />
-        ) )}
-        {/*
-        {expenses.map( expense => (
-            <Expense 
-                key={expense.id}
-                expense = {expense}
-            /> 
         ))}
-        */}
     </div>
   )
 }
