@@ -28,7 +28,7 @@ const iconDictionary = {
   Others : ExpenseIcon
 }
 
-const Expense = ({expense, setEditExpense}) => {
+const Expense = ({expense, setEditExpense, eraseExpense}) => {
   const { category, name, price, id, date } = expense;
 
   const leadingActions = () => (
@@ -40,7 +40,10 @@ const Expense = ({expense, setEditExpense}) => {
   )
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => console.log('erase')}>
+      <SwipeAction 
+        onClick={() => eraseExpense(id)}
+        destructive={true}
+      >
         Erase
       </SwipeAction>
     </TrailingActions>
