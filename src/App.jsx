@@ -45,6 +45,7 @@ function App() {
       expense.date = Date.now();
       {/* adding the new expense to the history of expenses */}
       setExpenses([...expenses, expense])
+      setEditExpense({})
     }
     setAnimarModal(false)
         setTimeout(() => {
@@ -95,6 +96,7 @@ function App() {
         setAnimarModal = {setAnimarModal}
         saveExpense={saveExpense}
         editExpense={editExpense}
+        setEditExpense={setEditExpense}
         />}
 
     </div>
