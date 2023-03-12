@@ -24,6 +24,8 @@ const Modal = ({
             setName(editExpense.name)
             setPrice(editExpense.price)
             setCategory(editExpense.category)
+            setId(editExpense.id)
+            setDate(editExpense.date)
           }
     }, []);
 
@@ -61,7 +63,7 @@ const Modal = ({
                 onSubmit={handleSubmit}
                 className={`formulario ${animarModal ? "animar" : 'cerrar' }`}
             >
-                <legend>New Expense</legend>
+                <legend>{editExpense.name ? 'Edit Expense' : 'New Expense'}</legend>
                 {message && <Message tipo="error">{message}</Message>}
                 <div className='campo'>
                     <label htmlFor="nombre">Expense Name</label>
@@ -109,7 +111,7 @@ const Modal = ({
                 </div>
             
                 <input type="submit" 
-                    value="Add expense"
+                    value={editExpense.name ? 'Save Changes' : 'Add Expense'}
                 />
             </form>
         </div>

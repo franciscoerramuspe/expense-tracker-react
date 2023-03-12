@@ -37,11 +37,15 @@ function App() {
   }
 
   const saveExpense = expense => {
-    expense.id = generateId();
-    expense.date = Date.now();
-    {/* adding the new expense to the history of expenses */}
-    setExpenses([...expenses, expense])
-
+    if(expense.id) {
+      const updatdedExpenses = expenses.map( expenseState => expenseState.id === expense.id ? expense : expenseState)
+      setExpenses(updatdedExpenses)
+    } else {
+      expense.id = generateId();
+      expense.date = Date.now();
+      {/* adding the new expense to the history of expenses */}
+      setExpenses([...expenses, expense])
+    }
     setAnimarModal(false)
         setTimeout(() => {
             setModal(false)
