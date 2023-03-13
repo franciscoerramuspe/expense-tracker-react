@@ -7,15 +7,17 @@ import Modal from './components/Modal';
 
 function App() {
   
+  const [expenses, setExpenses] = useState(
+    localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : []
+  )
   const [presupuesto, setPresupuesto] = useState(
-    Number(localStorage.getItem('budget')) ?? 0
+    Number(localStorage.getItem('presupuesto')) ?? 0
   );
   const [isValidBudget, setIsValidBudget] = useState(false)
 
   const [modal, setModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
 
-  const [expenses, setExpenses] = useState([])
 
   const [editExpense, setEditExpense] = useState ({})
   
@@ -32,6 +34,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem('presupuesto', presupuesto ?? 0) // if budget, budget else 0
   }, [presupuesto])
+
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses) ?? []); //convert expenses arr to string since we cannot store an arr in LS
+  }, [expenses])
 
   useEffect(() => {
     const budgetLS = Number(localStorage.getItem('presupuesto')) ?? 0;
