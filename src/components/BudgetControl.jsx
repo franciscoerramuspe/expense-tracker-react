@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import {CircularProgressbar} from 'react-circular-progressbar'
+import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
 const BudgetControl = ({expenses, presupuesto}) => {
@@ -7,6 +7,7 @@ const BudgetControl = ({expenses, presupuesto}) => {
     const [percentage, setPercentage] = useState(0)
     const [available, setAvailable] = useState(0)
     const [spent, setSpent] = useState(0)
+    
 
 
     useEffect(() => {
@@ -31,11 +32,26 @@ const BudgetControl = ({expenses, presupuesto}) => {
             currency: "USD"
         })
     }
+    
+    const circleColor = percentage >= 80 ? '#f44336' : '#3b82f6';
+
+
+    
   return (
+    
     <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
         <div> 
-            <CircularProgressbar 
+            <CircularProgressbar
+                
+                styles={buildStyles({
+                    pathColor: circleColor,
+                    trailColor: '#f5f5f5',
+                    pathTransitionDuration: 0.9,
+                    textColor: circleColor
+                })}
                 value={percentage}
+                text={`${percentage}% spent`}
+
 
             />
         </div>
