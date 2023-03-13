@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react'
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
-const BudgetControl = ({expenses, presupuesto}) => {
+const BudgetControl = ({
+    expenses,
+    setExpenses,
+    presupuesto,
+    setPresupuesto,
+    setIsValidBudget
+    }) => {
 
     const [percentage, setPercentage] = useState(0)
     const [available, setAvailable] = useState(0)
@@ -32,6 +38,17 @@ const BudgetControl = ({expenses, presupuesto}) => {
             currency: "USD"
         })
     }
+
+    const handleResetApp = () => {
+        const result = confirm('Do you want to reset budget and expenses?');
+        if(result) {
+            setExpenses([])
+            setPresupuesto(0)
+            setIsValidBudget(false)
+        } else {
+            console.log('No')
+        }
+    }
     
     const circleColor = percentage >= 80 ? '#dc2626' : '#3b82f6';
 
@@ -56,6 +73,11 @@ const BudgetControl = ({expenses, presupuesto}) => {
             />
         </div>
         <div className='contenido-presupuesto'>
+            <button 
+                className="reset-app"
+                type="button"
+                onClick={handleResetApp}
+            >Reset app</button>
             <p>
                 <span>Budget: </span> {formatBudget(presupuesto)}
             </p>
