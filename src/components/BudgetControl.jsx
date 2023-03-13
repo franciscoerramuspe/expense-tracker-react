@@ -33,7 +33,7 @@ const BudgetControl = ({expenses, presupuesto}) => {
         })
     }
     
-    const circleColor = percentage >= 80 ? '#f44336' : '#3b82f6';
+    const circleColor = percentage >= 80 ? '#dc2626' : '#3b82f6';
 
 
     
@@ -59,7 +59,7 @@ const BudgetControl = ({expenses, presupuesto}) => {
             <p>
                 <span>Budget: </span> {formatBudget(presupuesto)}
             </p>
-            <p>
+            <p className={`${available < 0 ? 'negativo' : ''}`}>
                 <span>Available: </span> {formatBudget(available)}
             </p>
             <p>
