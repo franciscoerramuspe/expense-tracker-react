@@ -7,7 +7,9 @@ import Modal from './components/Modal';
 
 function App() {
   
-  const [presupuesto, setPresupuesto] = useState(0);
+  const [presupuesto, setPresupuesto] = useState(
+    Number(localStorage.getItem('budget')) ?? 0
+  );
   const [isValidBudget, setIsValidBudget] = useState(false)
 
   const [modal, setModal] = useState(false)
@@ -26,6 +28,18 @@ function App() {
       }, 500);
     }
   }, [ editExpense ])
+
+  useEffect(() => {
+    localStorage.setItem('presupuesto', presupuesto ?? 0) // if budget, budget else 0
+  }, [presupuesto])
+
+  useEffect(() => {
+    const budgetLS = Number(localStorage.getItem('presupuesto')) ?? 0;
+
+    if(budgetLS > 0) {
+      setIsValidBudget(true)
+    }
+  }, []);
 
   const handleNewBudget = () => {
     setModal(true)
