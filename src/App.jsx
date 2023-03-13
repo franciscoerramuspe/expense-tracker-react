@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import ExpenseListing from './components/ExpenseListing';
+import Filters from './components/Filters';
 import { generateId } from './helpers';
 import IconNewExpense from './img/nuevo-gasto.svg'
 import Modal from './components/Modal';
@@ -20,6 +21,9 @@ function App() {
 
 
   const [editExpense, setEditExpense] = useState ({})
+
+  const [filter, setFilter] = useState('')
+  const [filteredExpenses, setFilteredExpenses] = useState([])
   
   useEffect(() => {
     if( Object.keys(editExpense).length > 0 ) {
@@ -40,12 +44,20 @@ function App() {
   }, [expenses])
 
   useEffect(() => {
+    if(filter) {
+      const filteredExpenses = expenses.filter( expense => expense.category === filter)
+      setFilteredExpenses(filteredExpenses)
+    }
+  }, [filter]);
+
+  useEffect(() => {
     const budgetLS = Number(localStorage.getItem('presupuesto')) ?? 0;
 
     if(budgetLS > 0) {
       setIsValidBudget(true)
     }
   }, []);
+
 
   const handleNewBudget = () => {
     setModal(true)
@@ -92,10 +104,16 @@ function App() {
       {isValidBudget && (
         <>
         <main>
+          <Filters 
+            filter={filter}
+            setFilter={setFilter}
+          />
           <ExpenseListing 
             expenses={expenses}
             setEditExpense={setEditExpense}
             eraseExpense={eraseExpense}
+            filter={filter}
+            filteredExpenses={filteredExpenses}
           />
         </main>
           <div className='nuevo-gasto'>
